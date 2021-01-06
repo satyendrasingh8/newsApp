@@ -63,34 +63,56 @@ class CategoryTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(right: 12),
-      child: Stack(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(6),
-            child: Image.network(
-              imageUrl,
-              width: 120,
-              height: 70,
-              fit: BoxFit.cover,
-            ),
-          ),
-          Container(
-            width: 120,
-            height: 60,
-            decoration: BoxDecoration(
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        margin: EdgeInsets.only(right: 12),
+        child: Stack(
+          children: [
+            ClipRRect(
               borderRadius: BorderRadius.circular(6),
-              color: Colors.black26 ),
-            alignment: Alignment.center,
-            child: Text(categoryName,style: TextStyle(color: Colors.white,
-            fontSize: 17
+              child: Image.network(
+                imageUrl,
+                width: 120,
+                height: 70,
+                fit: BoxFit.cover,
+              ),
             ),
-            textAlign: TextAlign.center,
-            ),
-          )
-        ],
+            Container(
+              width: 120,
+              height: 60,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6),
+                  color: Colors.black26),
+              alignment: Alignment.center,
+              child: Text(
+                categoryName,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500),
+                textAlign: TextAlign.center,
+              ),
+            )
+          ],
+        ),
       ),
+    );
+  }
+}
+
+class BlogTile extends StatelessWidget {
+  final String imageUrl, title, desc;
+  BlogTile(
+      {@required this.imageUrl, @required this.title, @required this.desc});
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(children: [
+        Image.network(imageUrl),
+        Text(title),
+        Text(desc),
+      ],),
     );
   }
 }
