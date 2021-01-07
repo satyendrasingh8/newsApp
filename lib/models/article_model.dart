@@ -5,15 +5,13 @@ class ArticleModel {
   String url;
   String urlToImage;
   String content;
-  DateTime publishedAt;
 
-  ArticleModel(
-      {this.author,
-      this.title,
-      this.description,
-      this.url,
-      this.urlToImage,
-      this.content,
-      this.publishedAt
-      });
+  ArticleModel({
+    this.author,
+    this.title,
+    this.description,
+    this.url,
+    this.urlToImage,
+    this.content,
+  });
 }

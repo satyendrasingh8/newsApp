@@ -1,5 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/helper/data.dart';
+import 'package:news_app/helper/news.dart';
+import 'package:news_app/models/article_model.dart';
 import 'package:news_app/models/category_model.dart';
 
 class Home extends StatefulWidget {
@@ -9,10 +12,22 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List<CategoryModel> categories = new List<CategoryModel>();
+  List<ArticleModel> articles = new List<ArticleModel>();
+  bool _loading = true;
   @override
   void initState() {
     super.initState();
     categories = getCategories();
+    getNews1();
+  }
+
+  getNews1() async {
+    News newsClass = News();
+    await newsClass.getNews();
+    articles = newsClass.news;
+    setState(() {
+      _loading = false;
+    });
   }
 
   @override
@@ -32,27 +47,54 @@ class _HomeState extends State<Home> {
         centerTitle: true,
         elevation: 0.0,
       ),
-      body: Container(
-        child: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              height: 70,
-              child: ListView.builder(
-                itemCount: categories.length,
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return CategoryTile(
-                    categoryName: categories[index].categoryName,
-                    imageUrl: categories[index].imageUrl,
-                  );
-                },
+      body:
+      _loading
+         ?
+          Center(
+             child: Container(
+             child: CircularProgressIndicator(),
+           ))
+         :
+           SingleChildScrollView(
+             child: Container(
+               padding: EdgeInsets.symmetric(horizontal: 10),
+                child: Column(
+                  children: [
+                    /// categories
+                    Container(
+                      
+                      height: 70,
+                      child: ListView.builder(
+                        itemCount: categories.length,
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return CategoryTile(
+                            categoryName: categories[index].categoryName,
+                            imageUrl: categories[index].imageUrl,
+                          );
+                        },
+                      ),
+                    ),
+                    //blogs
+                    Container(
+                      child: ListView.builder(
+                        itemCount: articles.length,
+                        shrinkWrap: true,
+                        physics: ClampingScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          return BlogTile(
+                            imageUrl: articles[index].urlToImage,
+                            title: articles[index].title,
+                            desc: articles[index].description,
+                          );
+                        },
+                      ),
+                    )
+                  ],
+                ),
               ),
-            )
-          ],
-        ),
-      ),
+           ),
     );
   }
 }
@@ -71,8 +113,8 @@ class CategoryTile extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(6),
-              child: Image.network(
-                imageUrl,
+              child: CachedNetworkImage(
+                imageUrl:imageUrl,
                 width: 120,
                 height: 70,
                 fit: BoxFit.cover,
@@ -108,11 +150,22 @@ class BlogTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Column(children: [
-        Image.network(imageUrl),
-        Text(title),
-        Text(desc),
-      ],),
+      margin: EdgeInsets.only(bottom: 14),
+      padding: EdgeInsets.only(top: 10),
+      child: Column(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.network(imageUrl)),
+          SizedBox(height: 10,),
+          Text(title,style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold
+          ),),
+          SizedBox(height: 7,),
+          Text(desc),
+        ],
+      ),
     );
   }
 }
