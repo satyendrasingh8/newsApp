@@ -1,3 +1,4 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/views/home.dart';
 
@@ -17,8 +18,16 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home:Home() ,
+      home: AnimatedSplashScreen(
+        splash: Image.asset(
+          'assets/splash1.png',
+        ),
+        splashIconSize: 165,
+        nextScreen: Home(),
+        splashTransition: SplashTransition.scaleTransition,
+        backgroundColor: Colors.lightBlue,
+        duration: 3000,
+      ),
     );
   }
 }
-

@@ -39,15 +39,12 @@ class _HomeState extends State<Home> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('24x7'),
-            Text(
-              'News',
-              style: TextStyle(color: Colors.blue),
-            ),
+            Image.asset('assets/news24.png',width: 130,height: 36, fit: BoxFit.cover),
+        
           ],
         ),
         centerTitle: true,
-        elevation: 0.0,
+        elevation: 1.0,
       ),
       body: _loading
           ? Center(
@@ -56,6 +53,7 @@ class _HomeState extends State<Home> {
             ))
           : SingleChildScrollView(
               child: Container(
+                margin: EdgeInsets.only(top: 5),
                 padding: EdgeInsets.symmetric(horizontal: 10),
                 child: Column(
                   children: [
@@ -185,9 +183,10 @@ class BlogTile extends StatelessWidget {
             SizedBox(
               height: 7,
             ),
-            Text(desc,style:TextStyle(
-              fontSize: 15
-            ),),
+            Text(
+              desc,
+              style: TextStyle(fontSize: 15),
+            ),
           ],
         ),
       ),

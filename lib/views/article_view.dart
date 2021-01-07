@@ -13,11 +13,10 @@ class ArticleView extends StatefulWidget {
 class _ArticleViewState extends State<ArticleView> {
   final Completer<WebViewController> _controller =
       Completer<WebViewController>();
-  
-       @override
+
+  @override
   void initState() {
     super.initState();
-    
   }
 
   @override
@@ -27,11 +26,8 @@ class _ArticleViewState extends State<ArticleView> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('24x7'),
-            Text(
-              'News',
-              style: TextStyle(color: Colors.blue),
-            ),
+            Image.asset('assets/news24.png',
+                width: 130, height: 36, fit: BoxFit.cover),
           ],
         ),
         actions: [

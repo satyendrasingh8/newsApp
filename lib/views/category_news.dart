@@ -36,11 +36,7 @@ class _CategoryNewsState extends State<CategoryNews> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('24x7'),
-            Text(
-              'News',
-              style: TextStyle(color: Colors.blue),
-            ),
+          Image.asset('assets/news24.png',width: 130,height: 36, fit: BoxFit.cover),
           ],
         ),
         actions: [
