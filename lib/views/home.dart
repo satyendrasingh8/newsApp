@@ -131,7 +131,7 @@ class CategoryTile extends StatelessWidget {
               height: 60,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(6),
-                  color: Colors.black26),
+                  color: Colors.black38),
               alignment: Alignment.center,
               child: Text(
                 categoryName,
@@ -185,7 +185,9 @@ class BlogTile extends StatelessWidget {
             SizedBox(
               height: 7,
             ),
-            Text(desc),
+            Text(desc,style:TextStyle(
+              fontSize: 15
+            ),),
           ],
         ),
       ),

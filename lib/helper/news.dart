@@ -31,7 +31,7 @@ class categoryNewsClass {
   List<ArticleModel> news = [];
   Future<void> getNews(String category) async {
     String url =
-        'http://newsapi.org/v2/top-headlines?category=$category&country=in&apiKey=9157ff5152514313b5bdf7727f562636';
+        'http://newsapi.org/v2/top-headlines?country=in&category=$category&apiKey=9157ff5152514313b5bdf7727f562636';
     var response = await http.get(url);
     var jsonData = jsonDecode(response.body);
     if (jsonData['status'] == 'ok') {

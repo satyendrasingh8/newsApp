@@ -55,54 +55,56 @@ class _CategoryNewsState extends State<CategoryNews> {
         centerTitle: true,
         elevation: 0.0,
       ),
-      body:  _loading
-         ?
-          Center(
-             child: Container(
-             child: CircularProgressIndicator(),
-           ))
-         : SingleChildScrollView(
-           child: Container(
-        child: Column(
-            children: [
-              Container(
-                child: ListView.builder(
-                  itemCount: articles.length,
-                  shrinkWrap: true,
-                  physics: ClampingScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return BlogTile(
-                      imageUrl: articles[index].urlToImage,
-                      title: articles[index].title,
-                      desc: articles[index].description,
-                      url: articles[index].url,
-                    );
-                  },
+      body: _loading
+          ? Center(
+              child: Container(
+              child: CircularProgressIndicator(),
+            ))
+          : SingleChildScrollView(
+              child: Container(
+                child: Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: ListView.builder(
+                        itemCount: articles.length,
+                        shrinkWrap: true,
+                        physics: ClampingScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          return BlogTile(
+                            imageUrl: articles[index].urlToImage,
+                            title: articles[index].title,
+                            desc: articles[index].description,
+                            url: articles[index].url,
+                          );
+                        },
+                      ),
+                    )
+                  ],
                 ),
-              )
-            ],
-        ),
-      ),
-         ),
+              ),
+            ),
     );
   }
 }
 
-
-
 class BlogTile extends StatelessWidget {
-  final String imageUrl, title, desc,url;
+  final String imageUrl, title, desc, url;
   BlogTile(
-      {@required this.imageUrl, @required this.title, @required this.desc
-      ,@required this.url
-      });
+      {@required this.imageUrl,
+      @required this.title,
+      @required this.desc,
+      @required this.url});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        Navigator.push(context,MaterialPageRoute(builder: (context)=>
-        ArticleView(blogUrl:url ,)
-        ));
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ArticleView(
+                      blogUrl: url,
+                    )));
       },
       child: Container(
         margin: EdgeInsets.only(bottom: 14),
@@ -110,15 +112,21 @@ class BlogTile extends StatelessWidget {
         child: Column(
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.network(imageUrl)),
-            SizedBox(height: 10,),
-            Text(title,style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold
+                borderRadius: BorderRadius.circular(8),
+                child: Image.network(imageUrl)),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              title,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 7,
+            ),
+            Text(desc,style:TextStyle(
+              fontSize: 15
             ),),
-            SizedBox(height: 7,),
-            Text(desc),
           ],
         ),
       ),
