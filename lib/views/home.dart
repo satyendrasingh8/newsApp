@@ -36,12 +36,14 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 65,
+      backgroundColor:  Color(0xffffffff),
       
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/news24.png',width: 130,height: 36, fit: BoxFit.cover),
-        
+            Image.asset('assets/news24.png',
+                width: 230, height: 65, fit: BoxFit.cover),
           ],
         ),
         centerTitle: true,

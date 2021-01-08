@@ -24,8 +24,10 @@ class MyApp extends StatelessWidget {
         ),
         splashIconSize: 165,
         nextScreen: Home(),
+        curve: Curves.easeInCubic,
+       
         splashTransition: SplashTransition.scaleTransition,
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Colors.redAccent,
         duration: 3000,
       ),
     );

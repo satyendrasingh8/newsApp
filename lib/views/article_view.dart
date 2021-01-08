@@ -23,26 +23,21 @@ class _ArticleViewState extends State<ArticleView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          toolbarHeight: 63,
+      backgroundColor:  Color(0xffffffff),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/news24.png',
-                width: 130, height: 36, fit: BoxFit.cover),
-          ],
+           Text('Flutter'),
+           Text(' News',style: TextStyle(color: Colors.blue),)
+          ]
         ),
-        actions: [
-          Opacity(
-            opacity: 0,
-            child: Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Icon(Icons.save),
-            ),
-          )
-        ],
+        
         centerTitle: true,
         elevation: 0.0,
       ),
       body: Container(
+        
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: WebView(
